@@ -1,0 +1,18 @@
+#! /bin/bash
+#PBS -q gpu
+#PBS -l nodes=gpunode17.chess:ppn=4
+#PBS -j oe
+
+#PBS -o result
+
+cd $PBS_O_WORKDIR
+export PATH=/home/hqzhong/anaconda3/envs/pt/bin:$PATH
+
+#python /home/hqzhong/Programs/Hover-net/src/extract_patches.py
+#python /home/hqzhong/Programs/Hover-net/src/divide_data.py
+#python /home/hqzhong/Programs/Hover-net/src/train.py --gpu='0,1'
+python /home/hqzhong/Programs/hover/run_train.py --gpu='0, 1'
+#python /home/hqzhong/Programs/Hover-net/src/process.py
+#python /home/hqzhong/Programs/Hover-net/src/compute_stats.py --mode=instance --pred_dir='output/seg_only/v1.0.1/np_hv/_proc/' --true_dir='data/CoNSeP/Test/Labels/'
+#python /home/hqzhong/Programs/Hover-net/src/compute_stats.py --mode=instance --pred_dir='output/v1.0.4-1//np_hv/_proc/' --true_dir='data/CoNSeP/Test/Labels/'
+#python /home/hqzhong/Programs/Hover-net/src/compute_stats.py --mode=type --pred_dir='output/v1.0.4-1//np_hv/_proc/' --true_dir='data/CoNSeP/Test/Labels/'
