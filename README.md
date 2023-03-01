@@ -1,21 +1,23 @@
 # TSHVNet
 ![]( https://img.shields.io/badge/license-MIT-green.svg)  
-This repo. is the official implementation of "Simultaneous Nuclear Instance Segmentation and Classification in Histopathological Images Based on Multi-Attention Mechanisms" .  
+This repo. is the official implementation of "TSHVNet:Simultaneous Nuclear Instance Segmentation and Classification in Histopathological Images Based on Multi-Attention Mechanisms" .  
 Please see the [paper](https://www.hindawi.com/journals/bmri/2022/7921922/).  
 
 ## Overview    
-<img width="407" alt="image" src="https://user-images.githubusercontent.com/59470630/222140327-fc5ab726-7b18-42bc-8349-d37b7b5b3c6f.png">
+<img width="333" alt="image" src="https://user-images.githubusercontent.com/59470630/222143496-76c5f33b-0edc-462e-b261-7f91a6f6a033.png">
 
 
 ##Visual demonstration of the comparative performance of different models on the Pannuke dataset.   
-<img width="333" alt="image" src="https://user-images.githubusercontent.com/59470630/222140326-8f74911c-9772-42f3-ab0d-5a16b2856a1b.png">
+<img width="407" alt="image" src="https://user-images.githubusercontent.com/59470630/222143572-444c44e5-f016-4092-9997-7815cb1241e2.png">
 
 ##Visual demonstration of the comparative performance of different models on the Consep dataset.
+<img width="416" alt="image" src="https://user-images.githubusercontent.com/59470630/222143606-77779280-8448-41e5-9d38-d98b45164ad1.png">
+
+
 ## Run  
 1.Requirements:  
 * python3  
 * Pytorch 1.0.1
-* 
 We have uploaded the corresponding environment package for your convenience. 
 
 2.Training:  
@@ -40,10 +42,11 @@ You'll get four files at "data4/jyh/hv2/dataset/sample_titles/pred"
 UL-HVNet:
 The experimental procedure is the same as TSHVNet
 ## Overview   
+<img width="415" alt="image" src="https://user-images.githubusercontent.com/59470630/222142723-f9b1addf-a93d-4c47-a12a-f9c2077ff638.png">
 
 ## Citation  
 If you find our paper/code is helpful, please consider citing:  
-```Yuli Chen, Yao Zhou, Guoping Chen, Yuchuan Guo, Yanquan Lv, Miao Ma, Zhao Pei, Zengguo Sun, "Segmentation of Breast Tubules in H&E Images Based on a DKS-DoubleU-Net Model", BioMed Research International, vol. 2022, Article ID 2961610, 12 pages, 2022. https://doi.org/10.1155/2022/2961610```
+```Yuli Chen, Yuhang Jia, Xinxin Zhang, Xue Li, Miao Ma, Zengguo Sun, Zhao Pei, "TSHVNet: Simultaneous Nuclear Instance Segmentation and Classification in Histopathological Images Based on Multiattention Mechanisms", BioMed Research International, vol. 2022, Article ID  7921922, 17 pages, 2022. https://www.hindawi.com/journals/bmri/2022/7921922/```
 
 
 
