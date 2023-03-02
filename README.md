@@ -13,6 +13,7 @@ Please see the [paper](https://www.hindawi.com/journals/bmri/2022/7921922/).
 ##Visual demonstration of the comparative performance of different models on the Consep dataset.
 <img width="416" alt="image" src="https://user-images.githubusercontent.com/59470630/222143606-77779280-8448-41e5-9d38-d98b45164ad1.png">
 
+checkpoints:链接：https://pan.baidu.com/s/1wKI5E-MWHd781zhzSxPQjQ 提取码：758a
 
 ## Run  
 1.Requirements:  
