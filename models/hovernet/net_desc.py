@@ -8,7 +8,6 @@ from .net_utils import (DenseBlock, Net, ResidualBlock, TFSamepaddingLayer,
                         UpSample2x)
 from .utils import crop_op, crop_to_shape
 import json
-from .ulsam import ULSAM
 
 class HoVerNet(Net):
     """Initialise HoVer-Net."""
@@ -34,14 +33,6 @@ class HoVerNet(Net):
         self.d2 = ResidualBlock(512, [1, 3, 1], [256, 256, 1024], 4, stride=2)
         self.d3 = ResidualBlock(1024, [1, 3, 1], [512, 512, 2048], 2, stride=2)
 
-        self.d0_ulsam = ULSAM(256, 256, 264, 264, 16)
-        self.d1_ulsam = ULSAM(512, 512, 132, 132, 16)
-        self.d2_ulsam = ULSAM(1024, 1024, 66, 66, 16)
-        self.d3_ulsam = ULSAM(2048, 2048, 33, 33, 16)
-
-        self.u3_ulsam = ULSAM(1024, 1024, 66, 66, 16)
-        self.u2_ulsam = ULSAM(512, 512, 60, 60, 16)
-        self.u1_ulsam = ULSAM(256, 256, 80, 80, 16)
 
         self.conv_bot = nn.Conv2d(2048, 1024, 1, stride=1, padding=0, bias=False)
 
@@ -110,27 +101,19 @@ class HoVerNet(Net):
         if self.training:
             d0 = self.conv0(imgs)  # 1,64,264,264
             d0 = self.d0(d0, self.freeze)  # 1,256,264,264
-            d0 = self.d0_ulsam(d0)
             with torch.set_grad_enabled(not self.freeze):
                 d1 = self.d1(d0)  # 1,512,132,132
-                d1 = self.d1_ulsam(d1)
                 d2 = self.d2(d1)  # 1,1024,66,66
-                d2 = self.d2_ulsam(d2)
                 d3 = self.d3(d2)  # 1,2048,33,,33
-                d3 = self.d3_ulsam(d3)
 
             d3 = self.conv_bot(d3)
             d = [d0, d1, d2, d3]
         else:
             d0 = self.conv0(imgs)
             d0 = self.d0(d0)
-            d0 = self.d0_ulsam(d0)
             d1 = self.d1(d0)
-            d1 = self.d1_ulsam(d1)
             d2 = self.d2(d1)
-            d2 = self.d2_ulsam(d2)
             d3 = self.d3(d2)
-            d3 = self.d3_ulsam(d3)
             d3 = self.conv_bot(d3)
             d = [d0, d1, d2, d3]
 
@@ -145,15 +128,12 @@ class HoVerNet(Net):
         out_dict = OrderedDict()
         for branch_name, branch_desc in self.decoder.items():
             u3 = self.upsample2x(d[-1]) + d[-2]
-            u3 = self.u3_ulsam(u3)
             u3 = branch_desc[0](u3)
 
             u2 = self.upsample2x(u3) + d[-3]
-            u2 = self.u2_ulsam(u2)
             u2 = branch_desc[1](u2)
 
             u1 = self.upsample2x(u2) + d[-4]
-            u1 = self.u1_ulsam(u1)
             u1 = branch_desc[2](u1)
 
             u0 = branch_desc[3](u1)
